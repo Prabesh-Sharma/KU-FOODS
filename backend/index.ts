@@ -10,7 +10,7 @@ app.get("/", (req:Request, res:Response) => {
 
 app.get("/test",(req:Request,res:Response)=>{
   res.json({
-    message: "this is a testing route"
+    message: "this is a testing"
   })
 })
 
