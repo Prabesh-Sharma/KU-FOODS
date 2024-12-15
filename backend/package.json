@@ -1,11 +1,13 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
-    "build": "npx tsc",
+    "build": "rimraf dist && npx tsc",
+    "prestart": "npm run build",
     "start": "node dist/index.js",
-    "dev": "tsc -w & nodemon dist/index.js"
+    "predev":"npm run build",
+    "dev": "npx tsc -w & nodemon dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +17,7 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.2",
     "express": "^4.21.2",
+    "rimraf": "^6.0.1",
     "typescript": "^5.7.2"
   },
   "devDependencies": {
