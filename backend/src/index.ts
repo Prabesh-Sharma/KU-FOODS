@@ -1,19 +1,38 @@
-import express,{Express,Request,Response} from 'express'
+import express, { Express, Request, Response } from 'express'
+import { createServer } from 'http'
+import { Server } from 'socket.io'
+import { config } from 'dotenv'
+import connection from './database/connection'
 
-const app:Express = express();
+config()
 
-app.get("/", (req:Request, res:Response) => {
-  res.json({
-    message: "hello from ts!!! & nodemon",
-  });
-});
+const app: Express = express()
+const httpServer = createServer(app)
+const io = new Server(httpServer, {
+  cors: {
+    origin: '*',
+  },
+})
 
-app.get("/test",(req:Request,res:Response)=>{
-  res.json({
-    message: "this is a testing route"
+connection(process.env.URI)
+io.on('connect', (socket) => {
+  console.log(`a new user with socket id: ${socket.id} has connected`)
+
+  socket.on('order', (data) => {
+    socket.broadcast.emit('onOrder', {
+      orderDetails: data.orderDetails,
+      consumerLocation: data.consumerLocation,
+      hotelLocation: data.hotelLocation,
+    })
   })
 })
 
-app.listen(6969, () => {
-  console.log("server started on port 6969");
-});
+app.get('/', (req: Request, res: Response) => {
+  res.json({
+    message: 'hello from ts!!! & nodemon',
+  })
+})
+
+httpServer.listen(6969, '0.0.0.0', () => {
+  console.log('server started on port 6969')
+})

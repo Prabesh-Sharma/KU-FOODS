@@ -1,0 +1,32 @@
+user location == latitude longitude
+restaurant location == latitude longitude 
+--location--
+obj{
+coords:{
+    latitude:
+    longitude:
+    altitude:
+    accuracy:
+    altitudeAccuracy:
+    heading:
+    speed:
+}
+}
+food type 
+food quantity
+price: pratyak food ma price
+
+{
+    "coords": 
+    {
+        "accuracy": 100, 
+        "altitude": 1468.4000244140625, 
+        "altitudeAccuracy": 32.22570037841797, 
+        "heading": 0, 
+        "latitude": 27.6189798, 
+        "longitude": 85.5385936, 
+        "speed": 0
+    }, 
+    "mocked": false, 
+    "timestamp": 1734431963610
+}
