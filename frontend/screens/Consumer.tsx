@@ -2,7 +2,7 @@ import { View, Text, Button } from "react-native";
 import React, { useState } from "react";
 import io from "socket.io-client";
 
-const socket = io("http:\\172.18.140.188:6969");
+const socket = io("http://172.18.142.155:6969");
 
 const Consumer = () => {
   const [orderDetails, setOrderDetails] = useState({
@@ -35,7 +35,11 @@ const Consumer = () => {
     timestamp: Date.now(),
   });
   const ConfirmOrder = () => {
-    socket.emit("order", orderDetails, consumerLocation, hotelLocation);
+    socket.emit("order", {
+      orderDetails: orderDetails,
+      consumerLocation: consumerLocation,
+      hotelLocation: hotelLocation,
+    });
   };
   return (
     <View>

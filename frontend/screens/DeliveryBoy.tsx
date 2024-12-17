@@ -4,7 +4,7 @@ import MapScreen from "./MapScreen";
 import io from "socket.io-client";
 
 // Ensure the correct URL is passed here if needed, e.g. socket = io('http://localhost:3000');
-const socket = io("http:\\172.18.140.188:6969");
+const socket = io("http://172.18.142.155:6969");
 
 const DeliveryBoy = () => {
   const [newOrder, setNewOrder] = useState(null);
@@ -13,22 +13,26 @@ const DeliveryBoy = () => {
 
   // Listen for the new order event
   useEffect(() => {
-    socket.on("onOrder", ({ itemsDetail, kinneLocation, bechneLocation }) => {
-      // Show an alert to the delivery boy
-      Alert.alert(
-        "New Order",
-        `Customer requires: ${itemsDetail.quantity} ota ${itemsDetail.items[0]}`,
-        [
-          { text: "Accept", onPress: () => handleOrderResponse(true) },
-          { text: "Decline", onPress: () => handleOrderResponse(false) },
-        ]
-      );
+    socket.on(
+      "onOrder",
+      ({ orderDetails, consumerLocation, hotelLocation }) => {
+        // Show an alert to the delivery boy
+        console.log(orderDetails, consumerLocation, hotelLocation);
+        Alert.alert(
+          "New Order",
+          `Customer requires: ${orderDetails.quantity} ota ${orderDetails.items[0]}`,
+          [
+            { text: "Accept", onPress: () => handleOrderResponse(true) },
+            { text: "Decline", onPress: () => handleOrderResponse(false) },
+          ]
+        );
 
-      // Set the received locations and order details
-      setConsumerLocation(kinneLocation);
-      setHotelLocation(bechneLocation);
-      setNewOrder(itemsDetail);
-    });
+        // Set the received locations and order details
+        setConsumerLocation(consumerLocation);
+        setHotelLocation(hotelLocation);
+        setNewOrder(orderDetails);
+      }
+    );
 
     // Cleanup the socket listener when the component is unmounted
     return () => {
