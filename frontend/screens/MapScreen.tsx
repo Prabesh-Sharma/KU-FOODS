@@ -8,6 +8,9 @@ import {
 } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
+import io from "socket.io-client";
+
+const socket = io();
 
 const MapScreen = ({
   restaurantLocation,
@@ -21,10 +24,11 @@ const MapScreen = ({
     useState<Location.LocationObject | null>(null);
   const [errors, setErrros] = useState<string | null>(null);
   const [online, setOnline] = useState(false);
-  const handleOnline = () => {
-    setOnline(true);
-    console.log(`Delivery Boy is ${online ? " " : "not "} online`);
-  };
+  // const handleOnline = () => {
+  //   socket.on()
+  //   setOnline(true);
+  //   console.log(`Delivery Boy is ${online ? " " : "not "} online`);
+  // };
 
   useEffect(() => {
     const accessLocationPermission = async () => {
@@ -58,11 +62,32 @@ const MapScreen = ({
 
   return (
     <View style={{ flex: 1 }}>
-      {online && (
-        <View className="h-[50px] ">
-          <View className="h-full w-[50px] rounded-full bg-green-900 "></View>
+      {/* {online && (
+        <View
+          style={{
+            position: "absolute",
+            top: 20,
+            left: 20,
+            display: "flex",
+            flexDirection: "row", // Align items horizontally
+            alignItems: "center", // Center items vertically
+            zIndex: 10, // Ensure it appears above the map
+          }}
+        >
+          <View
+            style={{
+              height: 20,
+              width: 20,
+              borderRadius: 10, // Make it a perfect circle
+              backgroundColor: "green",
+            }}
+          />
+
+          <Text style={{ marginLeft: 10, fontSize: 16, color: "black" }}>
+            Online
+          </Text>
         </View>
-      )}
+      )} */}
 
       <View
         style={{
@@ -74,7 +99,7 @@ const MapScreen = ({
           alignItems: "center",
         }}
       >
-        <Button title="Go online!" onPress={handleOnline} />
+        {/* <Button title="Go online!" onPress={handleOnline} /> */}
       </View>
       <MapView
         style={{ flex: 1 }}
