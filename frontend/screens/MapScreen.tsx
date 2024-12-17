@@ -28,7 +28,6 @@ const MapScreen = ({
 
   useEffect(() => {
     const accessLocationPermission = async () => {
-      // Request permission explicitly
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
         setErrros("Permission to accesss location was denied");
@@ -60,7 +59,9 @@ const MapScreen = ({
   return (
     <View style={{ flex: 1 }}>
       {online && (
-        <View className="h-[10px] w-[10x] rounded-full bg-green-800"></View>
+        <View className="h-[50px] ">
+          <View className="h-full w-[50px] rounded-full bg-green-900 "></View>
+        </View>
       )}
 
       <View
