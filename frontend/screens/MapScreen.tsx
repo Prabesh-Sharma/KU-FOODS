@@ -6,14 +6,25 @@ import {
   Button,
   Dimensions,
 } from "react-native";
-import MapView from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 
-const MapScreen = () => {
+const MapScreen = ({
+  restaurantLocation,
+  buyerLocation,
+}: {
+  restaurantLocation: Location.LocationObject;
+  buyerLocation: Location.LocationObject;
+}) => {
   const { height, width } = Dimensions.get("window");
   const [deliveryBoyLocation, setDeliveryBoyLocation] =
     useState<Location.LocationObject | null>(null);
   const [errors, setErrros] = useState<string | null>(null);
+  const [online, setOnline] = useState(false);
+  const handleOnline = () => {
+    setOnline(true);
+    console.log(`Delivery Boy is ${online ? " " : "not "} online`);
+  };
 
   useEffect(() => {
     const accessLocationPermission = async () => {
@@ -48,6 +59,10 @@ const MapScreen = () => {
 
   return (
     <View style={{ flex: 1 }}>
+      {online && (
+        <View className="h-[10px] w-[10x] rounded-full bg-green-800"></View>
+      )}
+
       <View
         style={{
           position: "absolute",
@@ -58,7 +73,7 @@ const MapScreen = () => {
           alignItems: "center",
         }}
       >
-        <Button title="Go online!" />
+        <Button title="Go online!" onPress={handleOnline} />
       </View>
       <MapView
         style={{ flex: 1 }}
@@ -72,7 +87,13 @@ const MapScreen = () => {
         showsUserLocation={true}
         showsMyLocationButton={true}
         provider="google"
-      />
+      >
+        <Marker
+          key={"RestaurantLocation"}
+          coordinate={restaurantLocation.coords}
+        />
+        <Marker key={"BuyerLocation"} coordinate={buyerLocation.coords} />
+      </MapView>
     </View>
   );
 };

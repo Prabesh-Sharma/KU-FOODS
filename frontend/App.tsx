@@ -4,18 +4,34 @@ import MapScreen from "./screens/MapScreen";
 
 const App = () => {
   const buyerLocation = {
-    latitude: 37.78825,
-    longitude: -122.4324,
+    coords: {
+      latitude: 27.621557894076474,
+      longitude: 85.53959763159864,
+      altitude: 0,
+      accuracy: 5,
+      altitudeAccuracy: 5,
+      heading: 0,
+      speed: 0,
+    },
+    timestamp: Date.now(),
   };
   const hotelLocation = {
-    lattitude: 32.9834,
-    longitude: -120.4323,
+    coords: {
+      latitude: 27.62120355017325,
+      longitude: 85.53845744249,
+      altitude: 0,
+      accuracy: 5,
+      altitudeAccuracy: 5,
+      heading: 0,
+      speed: 0,
+    },
+    timestamp: Date.now(),
   };
 
   return (
     <View className="h-full w-full p-2 pt-8">
       <MapScreen
-        userLocation={buyerLocation}
+        buyerLocation={buyerLocation}
         restaurantLocation={hotelLocation}
       />
     </View>
