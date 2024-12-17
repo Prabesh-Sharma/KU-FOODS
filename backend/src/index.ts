@@ -16,15 +16,16 @@ const io = new Server(httpServer, {
 
 connection(process.env.URI)
 io.on('connect', (socket) => {
-  console.log(`a new usfasefdsr witfsafsdh socket id: ${socket.id} has connected`)
+  console.log(
+    `a new usfasefdsr witfsafsdh socket id: ${socket.id} has connected`
+  )
 
-  socket.on('order', ({orderDetails,consumerLocation,hotelLocation}) => {
-    console.log("received order")
+  socket.on('order', ({ orderDetails, consumerLocation, hotelLocation }) => {
+    console.log('received order')
     console.log(orderDetails)
     console.log(consumerLocation)
     console.log(hotelLocation)
     socket.broadcast.emit('onOrder', {
-
       orderDetails: orderDetails,
       consumerLocation: consumerLocation,
       hotelLocation: hotelLocation,

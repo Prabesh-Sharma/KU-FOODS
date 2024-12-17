@@ -1,15 +1,14 @@
-import { View, Text, Button } from "react-native";
-import React, { useState } from "react";
-import io from "socket.io-client";
-
-const socket = io("http://172.18.142.155:6969");
+import { View, Text, Button } from 'react-native'
+import React, { useState } from 'react'
+import { useSocket } from '../context/SocketContext'
 
 const Consumer = () => {
+  const socket = useSocket()
   const [orderDetails, setOrderDetails] = useState({
-    items: ["pizza"],
+    items: ['pizza'],
     price: 250,
     quantity: 1,
-  });
+  })
   const [consumerLocation, setConsumerLocation] = useState({
     coords: {
       latitude: 27.621557894076474,
@@ -21,7 +20,7 @@ const Consumer = () => {
       speed: 0,
     },
     timestamp: Date.now(),
-  });
+  })
   const [hotelLocation, setHotelLocation] = useState({
     coords: {
       latitude: 27.62120355017325,
@@ -33,27 +32,30 @@ const Consumer = () => {
       speed: 0,
     },
     timestamp: Date.now(),
-  });
+  })
   const ConfirmOrder = () => {
-    socket.emit("order", {
+    if (!socket) {
+      console.log('socket is undefined')
+      return
+    }
+    socket.emit('order', {
       orderDetails: orderDetails,
       consumerLocation: consumerLocation,
       hotelLocation: hotelLocation,
-    });
-  };
+    })
+  }
   return (
     <View>
       <Text>Consumer</Text>
       <Button
         title="Confirm your Biryani Order"
         onPress={() => {
-          console.log(`your order has been sent`);
-          ConfirmOrder();
-          console.log(orderDetails, consumerLocation, hotelLocation);
+          console.log(`your order has been sent`)
+          ConfirmOrder()
         }}
       />
     </View>
-  );
-};
+  )
+}
 
-export default Consumer;
+export default Consumer

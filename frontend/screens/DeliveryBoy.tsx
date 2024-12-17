@@ -1,61 +1,61 @@
-import React, { useEffect, useState } from "react";
-import { View, Alert } from "react-native";
-import MapScreen from "./MapScreen";
-import io from "socket.io-client";
-
-// Ensure the correct URL is passed here if needed, e.g. socket = io('http://localhost:3000');
-const socket = io("http://172.18.142.155:6969");
+import React, { useEffect, useState } from 'react'
+import { View, Alert } from 'react-native'
+import MapScreen from './MapScreen'
+import { useSocket } from '../context/SocketContext'
 
 const DeliveryBoy = () => {
-  const [newOrder, setNewOrder] = useState(null);
-  const [consumerLocation, setConsumerLocation] = useState(null);
-  const [hotelLocation, setHotelLocation] = useState(null);
+  const socket = useSocket()
+  const [newOrder, setNewOrder] = useState(null)
+  const [consumerLocation, setConsumerLocation] = useState(null)
+  const [hotelLocation, setHotelLocation] = useState(null)
 
-  // Listen for the new order event
   useEffect(() => {
+    if (!socket) {
+      console.log('socket is undefined')
+      return
+    }
     socket.on(
-      "onOrder",
+      'onOrder',
       ({ orderDetails, consumerLocation, hotelLocation }) => {
-        // Show an alert to the delivery boy
-        console.log(orderDetails, consumerLocation, hotelLocation);
+        console.log(orderDetails, consumerLocation, hotelLocation)
         Alert.alert(
-          "New Order",
+          'New Order',
           `Customer requires: ${orderDetails.quantity} ota ${orderDetails.items[0]}`,
           [
-            { text: "Accept", onPress: () => handleOrderResponse(true) },
-            { text: "Decline", onPress: () => handleOrderResponse(false) },
+            { text: 'Accept', onPress: () => handleOrderResponse(true) },
+            { text: 'Decline', onPress: () => handleOrderResponse(false) },
           ]
-        );
+        )
 
-        // Set the received locations and order details
-        setConsumerLocation(consumerLocation);
-        setHotelLocation(hotelLocation);
-        setNewOrder(orderDetails);
+        setConsumerLocation(consumerLocation)
+        setHotelLocation(hotelLocation)
+        setNewOrder(orderDetails)
       }
-    );
+    )
 
-    // Cleanup the socket listener when the component is unmounted
     return () => {
-      socket.off("onOrder");
-    };
-  }, []);
+      socket.off('onOrder')
+    }
+  }, [socket])
 
-  // Function to handle order response
-  const handleOrderResponse = (accepted) => {
+  const handleOrderResponse = (accepted: boolean) => {
+    if (!socket) {
+      console.log('socket is undefined')
+      return
+    }
     if (accepted) {
-      console.log("Order Accepted");
-      socket.emit("orderAccepted", {
+      console.log('Order Accepted')
+      socket.emit('orderAccepted', {
         order: newOrder,
         consumerLocation,
         hotelLocation,
-      });
+      })
     } else {
-      console.log("Order Declined");
-      socket.emit("orderDeclined", { order: newOrder });
+      console.log('Order Declined')
+      socket.emit('orderDeclined', { order: newOrder })
     }
-  };
+  }
 
-  // Fallback locations in case data is not available
   const defaultLocation = {
     coords: {
       latitude: 27.621557894076474,
@@ -67,17 +67,16 @@ const DeliveryBoy = () => {
       speed: 0,
     },
     timestamp: Date.now(),
-  };
+  }
 
   return (
     <View style={{ flex: 1, padding: 16 }}>
-      {/* Render the map screen with the locations */}
       <MapScreen
-        buyerLocation={consumerLocation || defaultLocation} // Use consumer location if available, else fallback to default
-        restaurantLocation={hotelLocation || defaultLocation} // Use hotel location if available, else fallback to default
+        buyerLocation={consumerLocation || defaultLocation}
+        restaurantLocation={hotelLocation || defaultLocation}
       />
     </View>
-  );
-};
+  )
+}
 
-export default DeliveryBoy;
+export default DeliveryBoy
