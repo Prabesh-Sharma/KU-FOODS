@@ -1,7 +1,6 @@
-const mongoose=require('mongoose')
-const validator=require('validator')
+import mongoose from "mongoose";
 
-const userSchema= mongoose.Schema({
+const userSchema= new mongoose.Schema({
     username:{
         type:String,
         required:true
@@ -10,7 +9,6 @@ const userSchema= mongoose.Schema({
         type:String,
         required:true,
         unique:true,
-        validate:[validator.isEmail,"Incorrect Email"]
         },
     password:{
         type:String,
@@ -33,5 +31,6 @@ const userSchema= mongoose.Schema({
 
     }},{timestamps:true}
 );
-module.exports=mongoose.model('User',userSchema)
+const User=mongoose.model('User',userSchema)
+export default User;
 

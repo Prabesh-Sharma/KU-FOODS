@@ -1,27 +1,26 @@
-const mogoose=require('mongoose')
-const User=require('./User')
-const Products=require('./Product')
+import mongoose from "mongoose";
+
 
 const orderSchema=new mongoose.Schema({
     consumer:{
         required:true,
-        type:mongoose.Types.ObjectId(),
+        type:mongoose.Types.ObjectId,
         ref:"User",
         location:{
             required:true,
-            type:mongoose.Types.ObjectId(),
+            type:mongoose.Types.ObjectId,
             ref:"Location"
         }
     },
     hotelLocation:{
         required:true,
-        tyep:mogoose.Types.ObjectId(),
+        tyep:mongoose.Types.ObjectId,
         ref:"Hotel"
     },
 
     deliveryBoy:{
         required:true,
-        type:mongoose.Types.ObjectId(),
+        type:mongoose.Types.ObjectId,
         ref:"User"
     },
     items: [{
@@ -57,4 +56,5 @@ const orderSchema=new mongoose.Schema({
       }},{timestamps:true}
     
     )
-    module.exports = mongoose.model('Order', orderSchema);
+    const Order= mongoose.model('Order', orderSchema);
+    export default Order;
