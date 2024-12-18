@@ -14,6 +14,6 @@ const locationSchema = new mongoose.Schema({
   timestamp: { type: Date, required: true },
 })
 
-const Location = mongoose.model('Location', locationSchema)
+module.exports= mongoose.model('Location', locationSchema)
 
-export default Location
+
