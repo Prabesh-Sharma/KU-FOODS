@@ -1,6 +1,7 @@
 import { View, Text, Button } from 'react-native'
 import React, { useState } from 'react'
 import { useSocket } from '../context/SocketContext'
+import Header from '../components/Header'
 
 const Consumer = () => {
   const socket = useSocket()
@@ -46,14 +47,15 @@ const Consumer = () => {
   }
   return (
     <View>
-      <Text>Consumer</Text>
+      {/* <Text>Consumer</Text>
       <Button
         title="Confirm your Biryani Order"
         onPress={() => {
           console.log(`your order has been sent`)
           ConfirmOrder()
         }}
-      />
+      /> */}
+    <Header/>
     </View>
   )
 }
