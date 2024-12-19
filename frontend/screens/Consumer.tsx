@@ -1,7 +1,8 @@
 import { View, Text, Button } from 'react-native'
 import React, { useState } from 'react'
 import { useSocket } from '../context/SocketContext'
-import Header from '../components/Header'
+import Header from '../components/consumerComponent/Header'
+import FoodBody from '../components/consumerComponent/FoodBody'
 
 const Consumer = () => {
   const socket = useSocket()
@@ -55,7 +56,8 @@ const Consumer = () => {
           ConfirmOrder()
         }}
       /> */}
-    <Header/>
+      <Header />
+      <FoodBody />
     </View>
   )
 }
