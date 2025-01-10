@@ -1,6 +1,15 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  SafeAreaView,
+  TextInput,
+} from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
+import Feather from '@expo/vector-icons/Feather'
 
 const CustomHeader = () => {
   return (
@@ -8,34 +17,56 @@ const CustomHeader = () => {
       <View style={styles.container}>
         <TouchableOpacity>
           <Image
-            source={require('../../assets/deliveryBoy.jpg')}
+            source={require('../../assets/motorcycle-delivery-4449.png')}
             style={styles.imageStyle}
+          />
+        </TouchableOpacity>
+        <View style={styles.middleHeader}>
+          <Text>ChardoBato,Humla</Text>
+          <TouchableOpacity>
+            <Feather name="map-pin" size={20} color="purple" />
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity>
+          <Ionicons
+            name="person-outline"
+            size={30}
+            color="blue"
+            style={{ marginRight: 5 }}
           />
         </TouchableOpacity>
       </View>
     </SafeAreaView>
   )
 }
+
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   safeArea: {
     height: 80,
     width: '100%',
     padding: 5,
-    backgroundColor: 'gray',
   },
-
   imageStyle: {
-    height: 60,
-    width: 60,
-    borderRadius: 100,
+    height: 50,
+    width: 50,
+    marginLeft: 5,
+  },
+  inputStyle: {
+    borderRadius: 15,
+    backgroundColor: '#ccc',
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+  },
+  middleHeader: {
+    flexDirection: 'row',
+    gap: 1,
+    alignItems: 'center',
   },
 })
 
