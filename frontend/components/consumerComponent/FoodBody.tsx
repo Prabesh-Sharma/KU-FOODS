@@ -1,49 +1,73 @@
-import { StyleSheet, Text, View } from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  Image,
+} from 'react-native'
 import React from 'react'
+import FoodCategories from '../../utils/FoodCategories.json'
+
+const images = {
+  breakfast: require('../../assets/breakfast.png'),
+  lunch: require('../../assets/lunch.png'),
+  dinner: require('../../assets/dinner.png'),
+  desserts: require('../../assets/dessert.png'),
+  drinks: require('../../assets/drinks.png'),
+}
+
+const renderFoodCategories = ({ item }: { item: any }) => {
+  const imageKey: any = item.name.toLowerCase()
+
+  return (
+    <TouchableOpacity>
+      <View style={styles.categoryDiv}>
+        <Text>{item.name}</Text>
+        {images[imageKey] && (
+          <Image source={images[imageKey]} style={styles.categoryImage} />
+        )}
+      </View>
+    </TouchableOpacity>
+  )
+}
 
 const FoodBody = () => {
   return (
-    <View style={styles.container}>
-      <View style={styles.box1}>
-        <Text style={styles.t1}>Main Content Here </Text>
-      </View>
-      <View style={styles.box2}>
-        <Text style={styles.t1}>content Here</Text>
-      </View>
+    <View style={styles.mainDiv}>
+      <Text style={{ fontSize: 25, marginBottom: 20 }}>Categories</Text>
+      <FlatList
+        data={FoodCategories}
+        renderItem={renderFoodCategories}
+        keyExtractor={(item) => item.name}
+        // style={styles.Flat}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+      />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    height: '90%',
-    backgroundColor: 'lightgrey',
-    margin: 3,
+  mainDiv: {
+    width: '100%',
+    paddingTop: 50,
+    paddingHorizontal: 10,
+    display: 'flex',
+    overflow: 'scroll',
   },
-  box1: {
-    width: '90%',
-    height: '30%',
-    marginTop: 80,
-    marginHorizontal: 20,
-    borderWidth: 2,
-    padding: 0,
+  categoryDiv: {
+    height: 150,
+    width: 200,
+    backgroundColor: '#E2DFD2',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    marginRight: 20,
   },
-  t1: {
-    fontWeight: '500',
-    fontSize: 20,
-    color: 'black',
-    paddingTop: 60,
-    textAlign: 'center',
-    margin: 0,
-  },
-  box2: {
-    width: '90%',
-    height: '30%',
-    marginTop: 50,
-    marginHorizontal: 20,
-    borderWidth: 2,
-    padding: 0,
-    margin: 0,
+  categoryImage: {
+    height: 100,
+    width: 100,
   },
 })
 

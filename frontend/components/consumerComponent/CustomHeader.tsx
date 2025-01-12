@@ -25,6 +25,7 @@ const CustomHeader = () => {
           <Text>ChardoBato,Humla</Text>
           <TouchableOpacity>
             <Feather name="map-pin" size={20} color="purple" />
+            <Image source={require('../../assets/')} />
           </TouchableOpacity>
         </View>
         <TouchableOpacity>

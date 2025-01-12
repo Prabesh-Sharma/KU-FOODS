@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Breakfast",
+    "imagePath": "../../assets/breakfast.png"
+  },
+  {
+    "name": "Lunch",
+    "imagePath": "../../assets/lunch.png"
+  },
+  {
+    "name": "Dinner",
+    "imagePath": "../../assets/dinner.png"
+  },
+  {
+    "name": "Desserts",
+    "imagePath": "../../assets/dessert.png"
+  },
+  {
+    "name": "Drinks",
+    "imagePath": "../../assets/drinks.png"
+  }
+]

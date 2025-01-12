@@ -1,68 +1,80 @@
-// import { Alert, StyleSheet, Text, TextInput, View } from 'react-native'
-// import React from 'react'
-// import AntDesign from '@expo/vector-icons/AntDesign'
+import {
+  View,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  Image,
+} from 'react-native'
+import React from 'react'
+import Feather from '@expo/vector-icons/Feather'
 
-// const Header = () => {
-//   const fun = () => {
-//     Alert.alert('BACK BUTTON')
-//   }
-//   return (
-//     <View style={styles.header}>
-//       <View style={styles.topRow}>
-//         <AntDesign
-//           name="leftcircleo"
-//           size={24}
-//           color="black"
-//           style={styles.icon}
-//           onPress={() => fun()}
-//         />
-//         <Text style={styles.headerText}>Welcome Here</Text>
-//       </View>
-//       <TextInput
-//         style={styles.searchBar}
-//         placeholder="Search...Saimon...Search...."
-//         placeholderTextColor="grey"
-//       />
-//     </View>
-//   )
-// }
+const Header = () => {
+  return (
+    <SafeAreaView style={styles.mainStyle}>
+      {/* Left icon */}
+      <TouchableOpacity>
+        <View style={styles.barStyle}>
+          <Feather
+            name="bar-chart-2"
+            size={30}
+            color="black"
+            weight="regular"
+          />
+        </View>
+      </TouchableOpacity>
 
-// const styles = StyleSheet.create({
-//   header: {
-//     width: '100%',
-//     padding: 16,
-//     backgroundColor: 'lightgrey', // Base color
-//     // backgroundImage: 'linear-gradient(to right, lightgreen, red)', // Mixed gradient
-//     height: 120, // Adjust height to fit content
-//   },
-//   topRow: {
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     marginBottom: 8, // Space between top row and search bar
-//   },
-//   icon: {
-//     marginRight: 10, // Spacing between the icon and text
-//     fontSize: 40,
-//     color: 'black',
-//   },
-//   headerText: {
-//     width: '100%', // Added missing comma
-//     fontSize: 30,
-//     fontWeight: '400',
-//     color: '#2d2e32',
-//     letterSpacing: 1,
-//     alignContent: 'center',
-//   },
-//   searchBar: {
-//     width: '100%',
-//     height: 40,
-//     backgroundColor: '#f0f0f0',
-//     borderRadius: 20,
-//     paddingHorizontal: 12,
-//     fontSize: 14,
-//     color: 'black',
-//   },
-// })
+      {/* Center content (map pin + text) */}
+      <View>
+        <TouchableOpacity style={styles.centerContainer}>
+          <Feather name="map-pin" size={20} color="black" weight="regular" />
+          <View>
+            <Text>Chardobato,Humla</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
 
-// export default Header
-// //
+      {/* Right image */}
+      <TouchableOpacity>
+        <Image
+          source={require('../../assets/motorcycle-delivery-4449.png')}
+          style={styles.image}
+        />
+      </TouchableOpacity>
+    </SafeAreaView>
+  )
+}
+
+const styles = StyleSheet.create({
+  mainStyle: {
+    height: 60,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between', // Ensure left, center, and right are spaced properly
+    alignItems: 'center',
+    paddingHorizontal: 10,
+  },
+  barStyle: {
+    transform: [{ rotate: '90deg' }],
+  },
+  centerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1, // Makes sure the center section takes the remaining space
+    justifyContent: 'center', // Centers the content horizontally
+  },
+  //   locationTextContainer: {
+  //     marginLeft: 5,
+  //     display: 'flex', // Space between location text and chevron
+  //     flexDirection: 'row',
+  //     // justifyContent: 'center',
+  //     alignItems: 'center',
+  //   },
+  image: {
+    height: 50,
+    width: 50,
+    borderRadius: 25, // Make the image circular
+  },
+})
+
+export default Header
