@@ -5,6 +5,8 @@ import Header from '../components/consumerComponent/Header'
 import FoodBody from '../components/consumerComponent/FoodBody'
 import CustomHeader from '../components/consumerComponent/CustomHeader'
 import Search from '../components/consumerComponent/Search'
+import FoodSecondBody from '../components/consumerComponent/FoodSecondBody'
+import Popular from '../components/consumerComponent/Popular'
 
 const Consumer = () => {
   const socket = useSocket()
@@ -62,6 +64,7 @@ const Consumer = () => {
       <Search />
       {/* <CustomHeader /> */}
       <FoodBody />
+      <Popular />
     </View>
   )
 }

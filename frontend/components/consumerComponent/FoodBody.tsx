@@ -17,13 +17,22 @@ const images = {
   drinks: require('../../assets/drinks.png'),
 }
 
-const renderFoodCategories = ({ item }: { item: any }) => {
+const renderFoodCategories = ({ item, index }: { item: any; index: any }) => {
   const imageKey: any = item.name.toLowerCase()
+  const colors = ['#B5DFB2', '#FFB668', '#ADDFFF', '#FFB6C1', '#FF746C']
 
   return (
     <TouchableOpacity>
       <View style={styles.categoryDiv}>
-        <Text>{item.name}</Text>
+        <View
+          style={[styles.CircleDiv, { backgroundColor: colors[index] }]}
+        ></View>
+
+        <View style={styles.textKoLagi}>
+          <Text>{item.name}</Text>
+        </View>
+
+        {/* Image is inside the category div, it won't be clipped */}
         {images[imageKey] && (
           <Image source={images[imageKey]} style={styles.categoryImage} />
         )}
@@ -40,7 +49,6 @@ const FoodBody = () => {
         data={FoodCategories}
         renderItem={renderFoodCategories}
         keyExtractor={(item) => item.name}
-        // style={styles.Flat}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
       />
@@ -57,17 +65,37 @@ const styles = StyleSheet.create({
     overflow: 'scroll',
   },
   categoryDiv: {
+    position: 'relative',
     height: 150,
     width: 200,
     backgroundColor: '#E2DFD2',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
     borderRadius: 20,
     marginRight: 20,
+    overflow: 'hidden',
   },
   categoryImage: {
     height: 100,
     width: 100,
+    justifyContent: 'flex-end',
+    zIndex: 10,
+  },
+  textKoLagi: {
+    position: 'absolute',
+    top: 10,
+    zIndex: 10,
+    left: 15,
+  },
+  CircleDiv: {
+    height: 150,
+    width: 150,
+    borderRadius: 100,
+    position: 'absolute',
+    left: 60,
+    top: 30,
+    zIndex: 10,
   },
 })
 

@@ -1,0 +1,86 @@
+[
+  {
+    "name": "momo",
+    "hotelLocation": {
+      "lat": 28.613939,
+      "long": 77.209021
+    },
+    "itemsCount": 150,
+    "deliveryLocation": {
+      "lat": 28.6448,
+      "long": 77.216721
+    },
+    "pricePerPlate": 120,
+    "rating": 4.6,
+    "index": 0,
+    "description": "Juicy, tender pieces of chicken co  oked in a blend of aromatic spices. Each piece is marinated and cooked to perfection, ensuring maximum flavor and tenderness. Served with a variety of chutneys, this dish offers a satisfying experience for any chicken lover. The rich, bold flavors are complemented by a perfect balance of spices, making it a must-try for anyone craving Indian-style chicken."
+  },
+  {
+    "name": "chowmein",
+    "hotelLocation": {
+      "lat": 19.07609,
+      "long": 72.877426
+    },
+    "itemsCount": 120,
+    "deliveryLocation": {
+      "lat": 19.21833,
+      "long": 72.978088
+    },
+    "pricePerPlate": 90,
+    "rating": 4.3,
+    "index": 1,
+
+    "description": "Chowmein is a stir-fried noodle dish loaded with vegetables, meats, or tofu. The noodles are cooked to perfection, then stir-fried in a rich, savory sauce that brings out the flavors of the ingredients. The dish is customizable to your preference with options like chicken, beef, or vegetarian. Perfectly spiced, it's a comfort food loved by many, offering a balance of flavors and textures in every bite."
+  },
+  {
+    "name": "pasta",
+    "hotelLocation": {
+      "lat": 40.73061,
+      "long": -73.935242
+    },
+    "itemsCount": 80,
+    "deliveryLocation": {
+      "lat": 40.73061,
+      "long": -73.935242
+    },
+    "pricePerPlate": 100,
+    "rating": 4.8,
+    "index": 2,
+
+    "description": "Delicious, freshly made pasta served in a variety of sauces including marinara, alfredo, and pesto. Whether you like it creamy, tangy, or savory, there's a pasta dish to suit every taste. The perfectly cooked noodles are paired with rich, flavorful sauces and topped with fresh herbs and cheese. Ideal for an elegant meal or a casual dinner, this dish brings Italy to your table."
+  },
+  {
+    "name": "samosa",
+    "hotelLocation": {
+      "lat": 26.846693,
+      "long": 80.946167
+    },
+    "itemsCount": 250,
+    "deliveryLocation": {
+      "lat": 26.899435,
+      "long": 80.943167
+    },
+    "pricePerPlate": 40,
+    "rating": 4.4,
+    "index": 3,
+
+    "description": "Crispy, golden samosas filled with spiced potatoes, peas, and sometimes meat. These deep-fried pastries are crunchy on the outside and soft on the inside, creating a delightful contrast in texture. The flavorful filling is seasoned with a variety of spices, including cumin, coriander, and turmeric, making each bite aromatic and delicious. Perfect for snacking or as an appetizer, samosas are best enjoyed with tangy tamarind or spicy mint chutney."
+  },
+  {
+    "name": "lassi",
+    "hotelLocation": {
+      "lat": 31.5497,
+      "long": 74.3436
+    },
+    "itemsCount": 300,
+    "deliveryLocation": {
+      "lat": 31.5497,
+      "long": 74.3436
+    },
+    "pricePerPlate": 100,
+    "rating": 4.9,
+    "index": 4,
+
+    "description": "Lassi is a refreshing yogurt-based drink that is popular in South Asia. It can be sweet or salty, depending on the ingredients used. A sweet lassi is typically flavored with rosewater, cardamom, or mango, while a salty lassi is spiced with cumin and other savory seasonings. The drink is thick, creamy, and incredibly cooling, making it the perfect accompaniment to a spicy meal. Whether you prefer it sweet or savory, lassi is a beloved drink that is enjoyed year-round."
+  }
+]
